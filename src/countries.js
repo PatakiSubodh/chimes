@@ -10,12 +10,6 @@ export const COUNTRIES = {
     buttonIcon: "./selector-vietnam.png",
     writing: "vertical",
     gridW: 62,
-    eyebrowNative: "Duyên",
-    eyebrowRoman: "",
-    eyebrow: "A chance encounter",
-    title: "Vietnam — moss on temple roofs, rivers full of lantern light",
-    aside:
-      "Drift through Hanoi alleys, Hue courtyards, and eaves that curve like boats toward the water.",
     cloth: [
       "Đi một ngày đàng học một sàng khôn — nhưng chỉ khi bạn chịu mở mắt trước những điều nhỏ bé trên đường",
       "Trăm lời nghe không bằng một lần thấy — và một lần thấy không bằng một lần tự mình đi qua",
@@ -43,12 +37,6 @@ export const COUNTRIES = {
     roof: "./roof-china.png",
     buttonIcon: "./selector-china.png",
     writing: "vertical",
-    eyebrowNative: "缘分",
-    eyebrowRoman: "Yuánfèn",
-    eyebrow: "A destined meeting",
-    title: "China — golden courtyards, silk-road myths, roofs that refuse gravity",
-    aside:
-      "Wander forbidden gardens, painted eaves, and stories older than the maps that tried to hold them.",
     cloth: [
       "读万卷书不如行万里路——而真正的智者是先把书读进心里再把路走成自己的答案",
       "山高水长路在脚下——你会发现困住你的从来不是山与水而是你停下来的借口",
@@ -76,12 +64,6 @@ export const COUNTRIES = {
     roof: "./roof-japan.png",
     buttonIcon: "./selector-japan.png",
     writing: "vertical",
-    eyebrowNative: "一期一会",
-    eyebrowRoman: "Ichigo ichie",
-    eyebrow: "One time, one meeting",
-    title: "Japan — red eaves in the mist, stone paths, and patience as architecture",
-    aside:
-      "Pass under vermilion gates, cedar shade, and rooms where silence is part of the design.",
     cloth: [
       "旅は到着ではなく道そのものだ——到着を急ぐ者は道が与える智慧を受け取る余裕を失う",
       "遠くへ行けば自分に出会う——だがその自分は日常の仮面を脱いだあとにだけ姿を見せる",
@@ -112,12 +94,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Жол",
-    eyebrowRoman: "Jol",
-    eyebrow: "The open road",
-    title: "Kazakhstan — steppe wind, shanyrak light, and a home that moves with you",
-    aside:
-      "Cross grass without edge, warm felt interiors, and patterns that outrun every border.",
     cloth: [
       "Жол алыс болса да жүрек жақын — қашықтық тек денені сынайды жүректі емес",
       "Көк аспанның астында бәрі мүмкін — шекара көбінесе картада ғана бар ал ойда емес",
@@ -148,12 +124,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 40,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Судьба",
-    eyebrowRoman: "Sud'ba",
-    eyebrow: "A fated meeting",
-    title: "Russia — painted terems, lace gables, and snow that keeps the stories",
-    aside:
-      "Step under carved eaves, bright courtyards, and rooms that still smell like pine and tea.",
     cloth: [
       "Дорога длинная — душа открытая: закрытому сердцу даже короткий путь кажется чужой землёй",
       "Лес шумит старыми сказками — кто умеет слушать тот слышит не шум а предупреждение и утешение сразу",
@@ -184,12 +154,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Hasard",
-    eyebrowRoman: "",
-    eyebrow: "A fortunate chance",
-    title: "France — slate mansards, iron cresting, and courtyards that teach lingering",
-    aside:
-      "Wander zinc roofs, café shadows, and streets where beauty is treated as a daily habit.",
     cloth: [
       "Le voyage forme la jeunesse — mais c'est le retour qui révèle ce que le chemin a vraiment changé",
       "Partir c'est mourir un peu — et renaître un peu aussi dès que l'inconnu cesse d'être étranger",
@@ -220,12 +184,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 40,
     font: '"JetBrains Mono", "Noto Sans Devanagari", "Kohinoor Devanagari", "Noto Serif Devanagari", "PT Serif", serif',
-    eyebrowNative: "संयोग",
-    eyebrowRoman: "Sanyog",
-    eyebrow: "A destined meeting",
-    title: "India — carved domes, temple bells, and courtyards heavy with marigold light",
-    aside:
-      "Pass under onion finials, sandstone shade, and stories that refuse a single ending.",
     cloth: [
       "यात्रा अंत नहीं है — जो केवल मंज़िल देखता है वह राह का ज्ञान खो देता है",
       "अतिथि देवो भव — मेहमान में देवता देखना सिखाता है कि घर दीवार नहीं हृदय है",
@@ -256,12 +214,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Serendipity",
-    eyebrowRoman: "",
-    eyebrow: "A happy accident",
-    title: "UK — thatched eaves, stone chimneys, and lanes that keep their secrets soft",
-    aside:
-      "Duck under reed roofs, garden gates, and weather that makes tea feel like a ceremony.",
     cloth: [
       "The journey is the destination — arrival is only a pause in a longer kind of attention",
       "Not all those who wander are lost — some are simply refusing a map that never fit",
@@ -292,12 +244,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 40,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Vandring",
-    eyebrowRoman: "",
-    eyebrow: "A long walk",
-    title: "Norway — grass roofs, fjord light, and cabins that borrow the hillside",
-    aside:
-      "Cross sod eaves, cold clear air, and silence wide enough to hear your own thinking.",
     cloth: [
       "Det er veien som er målet — ankomsten er bare et hvilested i en lengre oppmerksomhet",
       "Ut på tur aldri sur — været er ikke fienden det er samtalepartneren",
@@ -328,12 +274,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Destino",
-    eyebrowRoman: "",
-    eyebrow: "A fated meeting",
-    title: "Italy — terracotta domes, marble lanterns, and piazzas that slow the clock",
-    aside:
-      "Stand under ribbed cupolas, warm stone, and evenings that arrive as if rehearsed for centuries.",
     cloth: [
       "Il viaggio non è l'arrivo — chi corre alla meta perde la sapienza che la strada offre piano",
       "Partire è un poco morire — e un poco rinascere quando l'estraneo smette di esserlo",
@@ -364,12 +304,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Happenstance",
-    eyebrowRoman: "",
-    eyebrow: "A lucky turn",
-    title: "USA — shingled gables, brick chimneys, and porches that keep the afternoon",
-    aside:
-      "Pass under dormer light, warm clapboard, and streets that still believe in an open door.",
     cloth: [
       "The journey is the destination — arrival is only a porch light left on for whoever comes next",
       "Not all those who wander are lost — some are simply rewriting the map with their feet",
@@ -400,12 +334,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 42,
     font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
-    eyebrowNative: "Saudade",
-    eyebrowRoman: "",
-    eyebrow: "A longing that travels",
-    title: "Brazil — terracotta tiles, white acroteria, and cupolas catching the heat",
-    aside:
-      "Wander clay roofs, shaded courtyards, and evenings that arrive already dancing.",
     cloth: [
       "A viagem não é a chegada — quem corre para o destino perde a sabedoria que o caminho oferece devagar",
       "Partir é morrer um pouco — e renascer um pouco quando o estranho deixa de ser estranho",
@@ -436,12 +364,6 @@ export const COUNTRIES = {
     writing: "horizontal",
     gridW: 40,
     font: '"JetBrains Mono", "Noto Naskh Arabic", "Noto Sans Arabic", "Geeza Pro", "PT Serif", serif',
-    eyebrowNative: "تقدیر",
-    eyebrowRoman: "Taqdir",
-    eyebrow: "A written fate",
-    title: "Iran — windcatchers, courtyard shade, and roofs that breathe the desert",
-    aside:
-      "Stand under badgir towers, cool terrace light, and patterns that turn heat into quiet.",
     cloth: [
       "سفر خودِ مقصد است — رسیدن فقط ایستگاهی در توجهی طولانی‌تر است",
       "نه هر که سرگردان است گم شده — برخی فقط نقشه را با قدم‌هایشان بازنویسی می‌کنند",

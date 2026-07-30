@@ -53,7 +53,6 @@ const AREA_H = 468;
 const STRINGS_PAD = 420;
 const SCENE_MS = 780;
 const LAYER_GAP_MS = 100;
-const CHAR_STAGGER_MS = 20;
 const CHAR_ANIM_MS = 480;
 const DEFAULT_GRID_W = 36;
 const DEFAULT_GRID_H = 40;
@@ -72,56 +71,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
-function splitTitleChars(text) {
-  let i = 0;
-  return String(text)
-    .split(/(\s+)/)
-    .map((token) => {
-      if (!token) return "";
-      if (/^\s+$/.test(token)) {
-        const idx = i++;
-        return `<span class="char char--space" style="--i:${idx}" aria-hidden="true">&nbsp;</span>`;
-      }
-      const chars = Array.from(token)
-        .map((ch) => {
-          const idx = i++;
-          return `<span class="char" style="--i:${idx}" aria-hidden="true">${escapeHtml(ch)}</span>`;
-        })
-        .join("");
-      return `<span class="word">${chars}</span>`;
-    })
-    .join("");
-}
-
 function applyCountryCopy(country) {
-  const eyebrow = document.getElementById("eyebrowText");
-  const title = document.getElementById("pageTitle");
-  const aside = document.getElementById("pageAside");
-  if (title) {
-    title.setAttribute("aria-label", country.title);
-    title.innerHTML = splitTitleChars(country.title);
-  }
-  if (aside) aside.textContent = country.aside;
-  if (eyebrow) {
-    const native = country.eyebrowNative || "";
-    const roman = country.eyebrowRoman || "";
-    const gloss = country.eyebrow || "";
-    if (native) {
-      const romanBit = roman ? ` (${escapeHtml(roman)})` : "";
-      const glossBit = gloss ? ` ${escapeHtml(gloss)}` : "";
-      eyebrow.innerHTML = `<strong>${escapeHtml(native)}</strong>${romanBit}${glossBit}`;
-    } else {
-      eyebrow.textContent = gloss;
-    }
-  }
   document.title = `Budarina — ${country.name}`;
   requestAnimationFrame(() => layoutAreaAboveCopy());
 }
@@ -137,15 +87,9 @@ function applyClothSettings(country) {
   }
 }
 
-function copyEnterDuration(country) {
-  const chars = Array.from(country.title || "").length;
-  // subtitle @0, title chars start @0.1s, aside @0.2s; wait for last char finish
-  return (
-    LAYER_GAP_MS +
-    chars * CHAR_STAGGER_MS +
-    CHAR_ANIM_MS +
-    LAYER_GAP_MS
-  );
+function copyEnterDuration() {
+  // Fixed cross-fade pacing now that there's no staggered title-char animation.
+  return LAYER_GAP_MS + CHAR_ANIM_MS + LAYER_GAP_MS;
 }
 
 function updateSideButtons() {
@@ -210,7 +154,6 @@ async function transitionTo(id, direction) {
   const bottom = document.getElementById("bottomCopy");
   const exitX = direction > 0 ? "-110vw" : "110vw";
   const enterX = direction > 0 ? "110vw" : "-110vw";
-  const next = COUNTRIES[id];
 
   if (bottom) {
     bottom.classList.remove("is-entering", "is-in");
@@ -245,7 +188,7 @@ async function transitionTo(id, direction) {
     bottom.classList.add("is-in");
   }
 
-  await sleep(Math.max(SCENE_MS, copyEnterDuration(next)));
+  await sleep(Math.max(SCENE_MS, copyEnterDuration()));
 
   if (scene) {
     scene.classList.remove("is-animating");
@@ -442,68 +385,6 @@ document.getElementById("chatBtn")?.addEventListener("click", () => {
   setPaneOpen(pane.hidden);
 });
 
-const aboutModal = document.getElementById("aboutModal");
-const aboutBtn = document.getElementById("aboutBtn");
-let aboutLastFocus = null;
-
-function isAboutOpen() {
-  return !!(aboutModal && !aboutModal.hidden);
-}
-
-function mountModal(el) {
-  if (el && el.parentElement !== document.body) {
-    document.body.appendChild(el);
-  }
-}
-
-function setAboutOpen(open) {
-  if (!aboutModal) return;
-  const want = !!open;
-  if (want === isAboutOpen()) {
-    if (want) {
-      mountModal(aboutModal);
-      const closeBtn = document.getElementById("aboutClose");
-      (closeBtn || aboutModal).focus?.();
-    }
-    return;
-  }
-  if (want) {
-    if (isContributionsView()) window.setView?.("home");
-    aboutLastFocus = document.activeElement;
-    mountModal(aboutModal);
-    aboutModal.hidden = false;
-    aboutModal.removeAttribute("hidden");
-    aboutModal.setAttribute("aria-hidden", "false");
-    aboutBtn?.setAttribute("aria-expanded", "true");
-    const closeBtn = document.getElementById("aboutClose");
-    (closeBtn || aboutModal).focus?.();
-  } else {
-    aboutModal.hidden = true;
-    aboutModal.setAttribute("hidden", "");
-    aboutModal.setAttribute("aria-hidden", "true");
-    aboutBtn?.setAttribute("aria-expanded", "false");
-    const restore = aboutLastFocus;
-    aboutLastFocus = null;
-    if (restore && typeof restore.focus === "function") {
-      restore.focus();
-    } else {
-      aboutBtn?.focus?.();
-    }
-  }
-}
-
-aboutBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setAboutOpen(true);
-});
-document.getElementById("aboutClose")?.addEventListener("click", () => {
-  setAboutOpen(false);
-});
-document.getElementById("aboutCloseBg")?.addEventListener("click", () => {
-  setAboutOpen(false);
-});
-
 /* ─── Contributions view + hanging name cloth ─── */
 const contributionsClothHost = document.getElementById("contributionsCloth");
 const contributionsEmpty = document.getElementById("contributionsEmpty");
@@ -514,8 +395,6 @@ let contributionsRaf = 0;
 let contributionsResizeObs = null;
 let contributionsBuildId = 0;
 let contributionsRebuildQuiet = false;
-
-mountModal(aboutModal);
 
 function isContributionsView() {
   return document.getElementById("stage")?.dataset.view === "contributions";
@@ -600,7 +479,6 @@ function refreshContributionsCloth() {
 }
 
 function enterContributionsView() {
-  if (isAboutOpen()) setAboutOpen(false);
   setContributionsHint("");
   refreshContributionsCloth();
   contributionsInput?.focus?.();
@@ -648,14 +526,7 @@ if (contributionsClothHost && typeof ResizeObserver !== "undefined") {
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "`") setPaneOpen(pane.hidden);
-  if (e.key === "Escape") {
-    if (isAboutOpen()) {
-      e.preventDefault();
-      setAboutOpen(false);
-      return;
-    }
-    setPaneOpen(false);
-  }
+  if (e.key === "Escape") setPaneOpen(false);
 });
 
 function isPaneEvent(e) {
@@ -664,8 +535,6 @@ function isPaneEvent(e) {
     e.target?.closest?.(".chat-btn") ||
     e.target?.closest?.(".topbar") ||
     e.target?.closest?.(".country-btn") ||
-    e.target?.closest?.(".about") ||
-    e.target?.closest?.(".about-btn") ||
     e.target?.closest?.(".contributions") ||
     e.target?.closest?.(".aside-block")
   );
@@ -1139,7 +1008,6 @@ function initViews() {
     });
 
     if (next === "destinations") {
-      if (isAboutOpen()) setAboutOpen(false);
       carousel?.syncToCountry(currentCountryId);
       carousel?.layout();
     }
@@ -1176,15 +1044,15 @@ function initViews() {
   window.setView = setView;
 }
 
-/** Mobile: pin home area a fixed gap above the eyebrow. */
+/** Mobile: pin home area a fixed gap above the bottom-copy row (tabs). */
 const AREA_COPY_GAP_PX = 64;
 
 function layoutAreaAboveCopy() {
   const stage = document.getElementById("stage");
   const area = document.getElementById("area");
-  const eyebrow = document.querySelector(".eyebrow");
+  const bottomCopy = document.getElementById("bottomCopy");
   const carouselVp = document.getElementById("carouselViewport");
-  if (!stage || !area || !eyebrow) return;
+  if (!stage || !area || !bottomCopy) return;
 
   const mobile = window.matchMedia("(max-width: 960px)").matches;
   if (!mobile) {
@@ -1209,9 +1077,9 @@ function layoutAreaAboveCopy() {
   }
 
   const stageRect = stage.getBoundingClientRect();
-  const eyebrowTop = eyebrow.getBoundingClientRect().top - stageRect.top;
+  const bottomCopyTop = bottomCopy.getBoundingClientRect().top - stageRect.top;
   // CSS `bottom` = distance from stage bottom to the area’s bottom edge
-  const bottom = Math.max(0, stageRect.height - eyebrowTop + AREA_COPY_GAP_PX);
+  const bottom = Math.max(0, stageRect.height - bottomCopyTop + AREA_COPY_GAP_PX);
   area.style.top = "auto";
   area.style.bottom = `${bottom}px`;
   if (carouselVp && stage.dataset.view !== "destinations") {
