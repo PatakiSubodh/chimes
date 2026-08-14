@@ -308,6 +308,12 @@ export const COUNTRY_CHIMES = {
   }
 };
 
+// Hybrid destinations — rooftop's origin country pairs with another country's chime tuning
+COUNTRY_CHIMES["vietnam-france"] = COUNTRY_CHIMES.france;
+COUNTRY_CHIMES["vietnam-norway"] = COUNTRY_CHIMES.norway;
+COUNTRY_CHIMES["china-france"] = COUNTRY_CHIMES.france;
+COUNTRY_CHIMES["china-norway"] = COUNTRY_CHIMES.norway;
+
 const FALLBACK = COUNTRY_CHIMES.china;
 
 export class StringChimes {

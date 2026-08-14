@@ -4,7 +4,6 @@ import {
   COUNTRIES,
   COUNTRY_ORDER,
   DEFAULT_COUNTRY,
-  neighborsOf,
   charForCell
 } from "./countries.js";
 import { chimes } from "./chimes.js";
@@ -92,31 +91,59 @@ function copyEnterDuration() {
   return LAYER_GAP_MS + CHAR_ANIM_MS + LAYER_GAP_MS;
 }
 
-function updateSideButtons() {
-  const { left, right } = neighborsOf(currentCountryId);
-  const leftCountry = COUNTRIES[left];
-  const rightCountry = COUNTRIES[right];
+let sidebarBuilt = false;
 
-  const btnLeft = document.getElementById("btnLeft");
-  const btnRight = document.getElementById("btnRight");
-  const leftIcon = document.getElementById("btnLeftIcon");
-  const rightIcon = document.getElementById("btnRightIcon");
-  const leftLabel = document.getElementById("btnLeftLabel");
-  const rightLabel = document.getElementById("btnRightLabel");
+function renderCountrySidebar() {
+  const list = document.getElementById("countrySidebarList");
+  if (!list || sidebarBuilt) return;
+  sidebarBuilt = true;
 
-  if (btnLeft && leftCountry) {
-    btnLeft.dataset.country = leftCountry.id;
-    btnLeft.setAttribute("aria-label", leftCountry.name);
-    btnLeft.disabled = transitioning;
-    if (leftIcon) leftIcon.src = leftCountry.buttonIcon || leftCountry.roof;
-    if (leftLabel) leftLabel.textContent = leftCountry.name;
+  list.innerHTML = "";
+  for (const id of COUNTRY_ORDER) {
+    const country = COUNTRIES[id];
+    if (!country) continue;
+
+    const li = document.createElement("li");
+    li.className = "country-sidebar__row";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "country-sidebar__item";
+    btn.dataset.country = id;
+    btn.setAttribute("aria-label", country.name);
+
+    const icon = document.createElement("span");
+    icon.className = "country-sidebar__icon";
+    icon.setAttribute("aria-hidden", "true");
+    const img = document.createElement("img");
+    img.src = country.buttonIcon || country.roof;
+    img.alt = "";
+    icon.appendChild(img);
+
+    const label = document.createElement("span");
+    label.className = "country-sidebar__label";
+    label.textContent = country.name;
+
+    btn.append(icon, label);
+    li.appendChild(btn);
+    list.appendChild(li);
   }
-  if (btnRight && rightCountry) {
-    btnRight.dataset.country = rightCountry.id;
-    btnRight.setAttribute("aria-label", rightCountry.name);
-    btnRight.disabled = transitioning;
-    if (rightIcon) rightIcon.src = rightCountry.buttonIcon || rightCountry.roof;
-    if (rightLabel) rightLabel.textContent = rightCountry.name;
+
+  list.addEventListener("click", (e) => {
+    const btn = e.target.closest(".country-sidebar__item");
+    if (!btn || btn.disabled) return;
+    const id = btn.dataset.country;
+    if (id) setCountry(id);
+  });
+}
+
+function updateCountrySidebar() {
+  const list = document.getElementById("countrySidebarList");
+  if (!list) return;
+  for (const btn of list.querySelectorAll(".country-sidebar__item")) {
+    const isActive = btn.dataset.country === currentCountryId;
+    btn.setAttribute("aria-current", isActive ? "true" : "false");
+    btn.disabled = transitioning;
   }
 }
 
@@ -128,7 +155,7 @@ function applyCountryVisuals(country) {
   applyClothSettings(country);
   applyCountryCopy(country);
   chimes.setCountry(country.id);
-  updateSideButtons();
+  updateCountrySidebar();
 }
 
 function setCountryImmediate(id) {
@@ -148,7 +175,7 @@ async function transitionTo(id, direction) {
   if (!COUNTRIES[id] || id === currentCountryId || transitioning) return;
 
   transitioning = true;
-  updateSideButtons();
+  updateCountrySidebar();
 
   const scene = document.getElementById("scene");
   const bottom = document.getElementById("bottomCopy");
@@ -201,7 +228,7 @@ async function transitionTo(id, direction) {
   }
 
   transitioning = false;
-  updateSideButtons();
+  updateCountrySidebar();
 }
 
 function setCountry(id, opts = {}) {
@@ -217,7 +244,7 @@ function setCountry(id, opts = {}) {
   if (direction == null) {
     if (from < 0 || to < 0) direction = 1;
     else {
-      const n = 3;
+      const n = COUNTRY_ORDER.length;
       const forward = (to - from + n) % n;
       const backward = (from - to + n) % n;
       direction = forward <= backward ? 1 : -1;
@@ -534,7 +561,7 @@ function isPaneEvent(e) {
     e.target?.closest?.(".tp-dfwv") ||
     e.target?.closest?.(".chat-btn") ||
     e.target?.closest?.(".topbar") ||
-    e.target?.closest?.(".country-btn") ||
+    e.target?.closest?.(".country-sidebar") ||
     e.target?.closest?.(".contributions") ||
     e.target?.closest?.(".aside-block")
   );
@@ -1835,16 +1862,8 @@ main();
 applyClothSettings(getCountry());
 applyCountryCopy(getCountry());
 chimes.setCountry(getCountry().id);
-updateSideButtons();
+renderCountrySidebar();
+updateCountrySidebar();
 initCarousel();
 initViews();
 bindAreaCopyLayout();
-
-document.getElementById("btnLeft")?.addEventListener("click", () => {
-  const id = document.getElementById("btnLeft")?.dataset.country;
-  if (id) setCountry(id, { direction: -1 });
-});
-document.getElementById("btnRight")?.addEventListener("click", () => {
-  const id = document.getElementById("btnRight")?.dataset.country;
-  if (id) setCountry(id, { direction: 1 });
-});

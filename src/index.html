@@ -20,33 +20,9 @@
         </button>
       </header>
 
-      <button
-        type="button"
-        class="country-btn country-btn--left"
-        id="btnLeft"
-        data-side="left"
-        data-country="vietnam"
-        aria-label="Vietnam"
-      >
-        <span class="country-btn__icon" aria-hidden="true">
-          <img id="btnLeftIcon" src="./selector-vietnam.png" alt="" />
-        </span>
-        <span class="country-btn__label" id="btnLeftLabel">Vietnam</span>
-      </button>
-
-      <button
-        type="button"
-        class="country-btn country-btn--right"
-        id="btnRight"
-        data-side="right"
-        data-country="japan"
-        aria-label="Japan"
-      >
-        <span class="country-btn__icon" aria-hidden="true">
-          <img id="btnRightIcon" src="./selector-japan.png" alt="" />
-        </span>
-        <span class="country-btn__label" id="btnRightLabel">Japan</span>
-      </button>
+      <nav class="country-sidebar" id="countrySidebar" aria-label="Countries">
+        <ul class="country-sidebar__list" id="countrySidebarList"></ul>
+      </nav>
 
       <div class="area" id="area" data-country="china">
         <div class="scene" id="scene">

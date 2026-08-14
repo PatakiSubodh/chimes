@@ -31,6 +31,66 @@ export const COUNTRIES = {
       "Đất lành chim đậu — nơi nào tâm được phép hạ xuống bình yên nơi ấy thành nhà"
     ].join("　")
   },
+  // Hybrid — Vietnam rooftop, France chimes & cloth text
+  "vietnam-france": {
+    id: "vietnam-france",
+    name: "Vietnam × France",
+    roof: "./roof-vietnam.png",
+    buttonIcon: "./selector-vietnam.png",
+    writing: "horizontal",
+    gridW: 42,
+    font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
+    cloth: [
+      "Le voyage forme la jeunesse — mais c'est le retour qui révèle ce que le chemin a vraiment changé",
+      "Partir c'est mourir un peu — et renaître un peu aussi dès que l'inconnu cesse d'être étranger",
+      "Il n'est pas de vent favorable pour celui qui ne sait où il va — la boussole commence dans le désir",
+      "On ne découvre pas de terre nouvelle sans consentir à perdre de vue le rivage — la peur du large est souvent la peur de soi",
+      "Le bonheur est dans le chemin non dans le but — l'arrivée n'est qu'une pause dans une attention plus longue",
+      "Voyager c'est apprendre à se taire — le silence d'une place étrangère parle plus juste que mille souvenirs",
+      "Les plus beaux voyages sont ceux qu'on n'a pas encore faits — l'attente aussi est une forme de départ",
+      "Paris vaut bien une messe — mais une rue vaut parfois toute une religion si l'on sait regarder",
+      "Rien ne se perd tout se transforme — surtout le voyageur qui croit rester le même",
+      "Il faut voyager pour apprendre — non les noms des lieux mais la mesure exacte de son ignorance",
+      "Le monde est un livre et ceux qui ne voyagent pas n'en lisent qu'une page — encore faut-il lire vraiment",
+      "La flânerie est une science — marcher sans but peut être le but le plus honnête",
+      "Qui n'a pas voyagé n'a lu qu'une page — qui voyage sans s'étonner n'a tourné que du papier",
+      "Chaque départ est une promesse — chaque retour un examen de ce qu'on a tenu",
+      "L'architecture est une musique figée — les toits de zinc en sont la mélodie la plus patient",
+      "Le hasard fait bien les choses — quand le cœur a déjà choisi de s'ouvrir",
+      "Mieux vaut allumer une chandelle que maudire l'obscurité — le voyageur porte sa propre lumière",
+      "La route est longue mais le cœur est léger — pourvu qu'on accepte de ne pas tout comprendre d'avance"
+    ].join("　")
+  },
+  // Hybrid — Vietnam rooftop, Norway chimes & cloth text
+  "vietnam-norway": {
+    id: "vietnam-norway",
+    name: "Vietnam × Norway",
+    roof: "./roof-vietnam.png",
+    buttonIcon: "./selector-vietnam.png",
+    writing: "horizontal",
+    gridW: 40,
+    font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
+    cloth: [
+      "Det er veien som er målet — ankomsten er bare et hvilested i en lengre oppmerksomhet",
+      "Ut på tur aldri sur — været er ikke fienden det er samtalepartneren",
+      "Fjorden husker mer enn kartet — vannet lærer deg å bøye deg uten å bryte",
+      "Et skip i havn er trygt men det er ikke derfor skip bygges — trygghet er kai ikke kurs",
+      "Verden er en bok den som ikke reiser leser bare én side — og ofte uten å se",
+      "Gå dit du ikke har vært — det ukjente gjenoppliver sansene mer enn det underholder",
+      "Fjellene ser høye ut til du tar steget — høyde er øyets bedrag skrittet er målet",
+      "Gras på taket husker jorda — et hjem kan låne landskapet uten å eie det",
+      "Stillhet er også tale — den som tåler roen hører mer enn den som fyller den",
+      "Nordlys skriver på himmelen — skjønnhet trenger ikke forklaring bare vitne",
+      "Ta med deg lyset inn i mørketiden — mot er ofte å holde varmen for andre",
+      "En sti i snøen er en setning — hvert fotavtrykk er et ord du ikke kan ta tilbake",
+      "Vinden renser mer enn den plager — hvis du lar den være del av reisen",
+      "Hjem er der noen venter — vegger kan reises overalt venting bygger mening",
+      "Reis for å bli liten nok — ydmykhet er riktig størrelse ikke selvutslettelse",
+      "Det beste øyeblikket er å tre inn i det ukjente — da er du midlertidig mulighet",
+      "Kabinen er liten verdenen er stor — det er nettopp derfor kabinen trengs",
+      "Reisen endrer blikket — og bare et endret blikk er verdig til å komme hjem"
+    ].join("　")
+  },
   china: {
     id: "china",
     name: "China",
@@ -56,6 +116,66 @@ export const COUNTRIES = {
       "心之所向素履以往——方向对了脚步慢一点也仍然在前进",
       "长风破浪会有时直挂云帆济沧海——时运会来但帆必须事先挂好",
       "愿你的脚步比目光走得更远——看见是开始抵达是责任"
+    ].join("　")
+  },
+  // Hybrid — China rooftop, France chimes & cloth text
+  "china-france": {
+    id: "china-france",
+    name: "China × France",
+    roof: "./roof-china.png",
+    buttonIcon: "./selector-china.png",
+    writing: "horizontal",
+    gridW: 42,
+    font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
+    cloth: [
+      "Le voyage forme la jeunesse — mais c'est le retour qui révèle ce que le chemin a vraiment changé",
+      "Partir c'est mourir un peu — et renaître un peu aussi dès que l'inconnu cesse d'être étranger",
+      "Il n'est pas de vent favorable pour celui qui ne sait où il va — la boussole commence dans le désir",
+      "On ne découvre pas de terre nouvelle sans consentir à perdre de vue le rivage — la peur du large est souvent la peur de soi",
+      "Le bonheur est dans le chemin non dans le but — l'arrivée n'est qu'une pause dans une attention plus longue",
+      "Voyager c'est apprendre à se taire — le silence d'une place étrangère parle plus juste que mille souvenirs",
+      "Les plus beaux voyages sont ceux qu'on n'a pas encore faits — l'attente aussi est une forme de départ",
+      "Paris vaut bien une messe — mais une rue vaut parfois toute une religion si l'on sait regarder",
+      "Rien ne se perd tout se transforme — surtout le voyageur qui croit rester le même",
+      "Il faut voyager pour apprendre — non les noms des lieux mais la mesure exacte de son ignorance",
+      "Le monde est un livre et ceux qui ne voyagent pas n'en lisent qu'une page — encore faut-il lire vraiment",
+      "La flânerie est une science — marcher sans but peut être le but le plus honnête",
+      "Qui n'a pas voyagé n'a lu qu'une page — qui voyage sans s'étonner n'a tourné que du papier",
+      "Chaque départ est une promesse — chaque retour un examen de ce qu'on a tenu",
+      "L'architecture est une musique figée — les toits de zinc en sont la mélodie la plus patient",
+      "Le hasard fait bien les choses — quand le cœur a déjà choisi de s'ouvrir",
+      "Mieux vaut allumer une chandelle que maudire l'obscurité — le voyageur porte sa propre lumière",
+      "La route est longue mais le cœur est léger — pourvu qu'on accepte de ne pas tout comprendre d'avance"
+    ].join("　")
+  },
+  // Hybrid — China rooftop, Norway chimes & cloth text
+  "china-norway": {
+    id: "china-norway",
+    name: "China × Norway",
+    roof: "./roof-china.png",
+    buttonIcon: "./selector-china.png",
+    writing: "horizontal",
+    gridW: 40,
+    font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
+    cloth: [
+      "Det er veien som er målet — ankomsten er bare et hvilested i en lengre oppmerksomhet",
+      "Ut på tur aldri sur — været er ikke fienden det er samtalepartneren",
+      "Fjorden husker mer enn kartet — vannet lærer deg å bøye deg uten å bryte",
+      "Et skip i havn er trygt men det er ikke derfor skip bygges — trygghet er kai ikke kurs",
+      "Verden er en bok den som ikke reiser leser bare én side — og ofte uten å se",
+      "Gå dit du ikke har vært — det ukjente gjenoppliver sansene mer enn det underholder",
+      "Fjellene ser høye ut til du tar steget — høyde er øyets bedrag skrittet er målet",
+      "Gras på taket husker jorda — et hjem kan låne landskapet uten å eie det",
+      "Stillhet er også tale — den som tåler roen hører mer enn den som fyller den",
+      "Nordlys skriver på himmelen — skjønnhet trenger ikke forklaring bare vitne",
+      "Ta med deg lyset inn i mørketiden — mot er ofte å holde varmen for andre",
+      "En sti i snøen er en setning — hvert fotavtrykk er et ord du ikke kan ta tilbake",
+      "Vinden renser mer enn den plager — hvis du lar den være del av reisen",
+      "Hjem er der noen venter — vegger kan reises overalt venting bygger mening",
+      "Reis for å bli liten nok — ydmykhet er riktig størrelse ikke selvutslettelse",
+      "Det beste øyeblikket er å tre inn i det ukjente — da er du midlertidig mulighet",
+      "Kabinen er liten verdenen er stor — det er nettopp derfor kabinen trengs",
+      "Reisen endrer blikket — og bare et endret blikk er verdig til å komme hjem"
     ].join("　")
   },
   japan: {
@@ -390,7 +510,11 @@ export const COUNTRIES = {
 /** Left → right order for side navigation */
 export const COUNTRY_ORDER = [
   "vietnam",
+  "vietnam-france",
+  "vietnam-norway",
   "china",
+  "china-france",
+  "china-norway",
   "japan",
   "kazakhstan",
   "russia",

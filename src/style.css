@@ -77,7 +77,7 @@ body {
   width: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   pointer-events: none;
 }
 
@@ -199,176 +199,92 @@ body {
   filter: brightness(1.1);
 }
 
-/* ─── Country side buttons — Figma 609:6644 / 608:6641 (y:279 on 1600×900) ─── */
-.country-btn {
+/* ─── Country sidebar — plain-text list with rooftop icons, right edge ─── */
+.country-sidebar {
   position: absolute;
   z-index: 15;
-  /* Figma 609:6644 / 608:6641 — y:279 on 1600×900 */
-  top: calc(279 / 900 * 100%);
-  width: 80px;
-  height: 80px;
-  padding: 4px;
+  right: var(--pad-x);
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 68vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-muted) transparent;
+}
+
+.country-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 2px;
   display: flex;
   flex-direction: column;
+  gap: 4px;
+}
+
+.country-sidebar__item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0;
+  gap: 10px;
+  width: 100%;
   appearance: none;
   background-color: transparent;
-  /* Wavy ink frame (Figma 615:6824 / 615:6827), not a hard box */
-  background-image: url("./selector-frame.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 84px 84px;
   border: none;
-  outline: none;
-  box-shadow: none;
-  border-radius: 0;
+  padding: 3px 6px;
   cursor: pointer;
   color: var(--ink);
-  overflow: visible;
+  opacity: 0.62;
+  text-align: left;
   box-sizing: border-box;
   transition:
-    transform 220ms var(--ease-scene),
-    opacity 220ms ease,
-    filter 180ms ease;
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
-.country-btn:focus-visible {
+.country-sidebar__item:hover {
+  opacity: 0.9;
+  transform: translateX(2px);
+}
+
+.country-sidebar__item:focus-visible {
   outline: 1px solid var(--ink);
-  outline-offset: 4px;
+  outline-offset: 2px;
 }
 
-.country-btn:hover {
-  transform: translateY(-2px);
-}
-
-.country-btn:active {
-  transform: translateY(0);
-}
-
-.country-btn:disabled {
-  opacity: 0.45;
+.country-sidebar__item:disabled {
   cursor: default;
   transform: none;
 }
 
-.country-btn--left {
-  left: var(--pad-x);
+.country-sidebar__item[aria-current="true"] {
+  opacity: 1;
+  font-weight: 700;
 }
 
-.country-btn--right {
-  right: var(--pad-x);
-}
-
-.country-btn__icon {
-  position: relative;
-  display: block;
-  width: 67px;
-  height: 21px;
-  overflow: hidden;
+.country-sidebar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 24px;
   flex-shrink: 0;
 }
 
-.country-btn__icon img {
+.country-sidebar__icon img {
   display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  object-position: center center;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Japan — Figma 616:6102: 76×22 */
-.country-btn[data-country="japan"] .country-btn__icon {
-  width: 76px;
-  height: 22px;
-}
-
-/* Vietnam — Figma 617:6130: 67×21 */
-.country-btn[data-country="vietnam"] .country-btn__icon {
-  width: 67px;
-  height: 21px;
-}
-
-/* China — Figma 617:6112: 76×22 */
-.country-btn[data-country="china"] .country-btn__icon {
-  width: 76px;
-  height: 22px;
-}
-
-/* Kazakhstan — Figma 617:6117: 64×30 */
-.country-btn[data-country="kazakhstan"] .country-btn__icon {
-  width: 64px;
-  height: 30px;
-}
-.country-btn[data-country="kazakhstan"] .country-btn__label {
-  font-size: 12px;
-  letter-spacing: -0.06em;
-}
-
-/* Russia — Figma 617:6122: 70×33 */
-.country-btn[data-country="russia"] .country-btn__icon {
-  width: 70px;
-  height: 33px;
-}
-
-/* France — Figma 633:311: 56×30 */
-.country-btn[data-country="france"] .country-btn__icon {
-  width: 56px;
-  height: 30px;
-}
-
-/* India — Figma 633:277: 70×44 */
-.country-btn[data-country="india"] .country-btn__icon {
-  width: 70px;
-  height: 44px;
-}
-
-/* UK — Figma 633:299: 62×43 */
-.country-btn[data-country="uk"] .country-btn__icon {
-  width: 62px;
-  height: 43px;
-}
-
-/* Norway — Figma 633:321: 62×28 */
-.country-btn[data-country="norway"] .country-btn__icon {
-  width: 62px;
-  height: 28px;
-}
-
-/* Italy — Figma 633:331: 54×50 */
-.country-btn[data-country="italy"] .country-btn__icon {
-  width: 54px;
-  height: 50px;
-}
-
-/* USA — Figma 634:388: 64×36 */
-.country-btn[data-country="usa"] .country-btn__icon {
-  width: 64px;
-  height: 36px;
-}
-
-/* Brazil — Figma 634:401: 64×28 */
-.country-btn[data-country="brazil"] .country-btn__icon {
-  width: 64px;
-  height: 28px;
-}
-
-/* Iran — Figma 634:410: 64×26 */
-.country-btn[data-country="iran"] .country-btn__icon {
-  width: 64px;
-  height: 26px;
-}
-
-.country-btn__label {
+.country-sidebar__label {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 0.98;
-  letter-spacing: -0.06em;
+  font-size: 15px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -981,7 +897,7 @@ body {
 }
 
 .stage[data-view="contributions"] .area,
-.stage[data-view="contributions"] .country-btn,
+.stage[data-view="contributions"] .country-sidebar,
 .stage[data-view="contributions"] .bottom-copy {
   opacity: 0;
   visibility: hidden;
@@ -1280,7 +1196,7 @@ body {
 
 /* ─── Destinations carousel (Figma 605:6580) ─── */
 .stage[data-view="destinations"] .area,
-.stage[data-view="destinations"] .country-btn,
+.stage[data-view="destinations"] .country-sidebar,
 .stage[data-view="destinations"] .bottom-copy {
   opacity: 0;
   visibility: hidden;
@@ -1670,94 +1586,21 @@ body {
     line-height: 32px;
   }
 
-  /* Country selectors — left / right, near-desktop size */
-  .country-btn {
+  /* Country sidebar — near-desktop size, tucked under the top bar */
+  .country-sidebar {
     top: 88px;
-    bottom: auto;
-    width: 72px;
-    height: 72px;
-    padding: 4px;
-    background-size: 76px 76px;
+    transform: none;
+    max-height: calc(100vh - 88px - 96px);
     z-index: 40;
   }
 
-  .country-btn--left {
-    left: var(--pad-x);
-    right: auto;
+  .country-sidebar__icon {
+    width: 26px;
+    height: 20px;
   }
 
-  .country-btn--right {
-    left: auto;
-    right: var(--pad-x);
-  }
-
-  .country-btn__icon {
-    width: 56px;
-    height: 18px;
-  }
-
-  .country-btn[data-country="japan"] .country-btn__icon,
-  .country-btn[data-country="china"] .country-btn__icon {
-    width: 64px;
-    height: 18px;
-  }
-
-  .country-btn[data-country="kazakhstan"] .country-btn__icon {
-    width: 54px;
-    height: 26px;
-  }
-
-  .country-btn[data-country="russia"] .country-btn__icon {
-    width: 58px;
-    height: 28px;
-  }
-
-  .country-btn[data-country="france"] .country-btn__icon {
-    width: 48px;
-    height: 26px;
-  }
-
-  .country-btn[data-country="india"] .country-btn__icon {
-    width: 58px;
-    height: 36px;
-  }
-
-  .country-btn[data-country="uk"] .country-btn__icon {
-    width: 52px;
-    height: 36px;
-  }
-
-  .country-btn[data-country="norway"] .country-btn__icon {
-    width: 52px;
-    height: 24px;
-  }
-
-  .country-btn[data-country="italy"] .country-btn__icon {
-    width: 46px;
-    height: 42px;
-  }
-
-  .country-btn[data-country="usa"] .country-btn__icon {
-    width: 54px;
-    height: 30px;
-  }
-
-  .country-btn[data-country="brazil"] .country-btn__icon {
-    width: 54px;
-    height: 24px;
-  }
-
-  .country-btn[data-country="iran"] .country-btn__icon {
-    width: 54px;
-    height: 22px;
-  }
-
-  .country-btn__label {
-    font-size: 14px;
-  }
-
-  .country-btn[data-country="kazakhstan"] .country-btn__label {
-    font-size: 11px;
+  .country-sidebar__label {
+    font-size: 13px;
   }
 
   /* Area above eyebrow/title */
@@ -2049,11 +1892,9 @@ body {
     --pad-bottom: 24px;
   }
 
-  .country-btn {
+  .country-sidebar {
     top: 72px;
-    width: 64px;
-    height: 64px;
-    background-size: 68px 68px;
+    max-height: calc(100vh - 72px - 88px);
   }
 
   .heading h1 {
