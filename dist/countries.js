@@ -11,6 +11,9 @@ const HIDDEN_NAMES = [
   { text: "SAURABH ROTAKE", row: 11, col: 2, dir: "v" }
 ];
 
+/** Name letters draw a touch larger than lowercase text, smaller than full capitals. */
+const HIDDEN_NAME_SCALE = 0.85;
+
 export const COUNTRIES = {
   vietnam: {
     id: "vietnam",
@@ -517,19 +520,24 @@ export const COUNTRIES = {
 };
 
 const wallpaper = COUNTRIES["china-france"];
-wallpaper.cloth = hideWords(wallpaper.cloth, wallpaper.gridW, HIDDEN_NAMES);
+const hidden = hideWords(wallpaper.cloth, wallpaper.gridW, HIDDEN_NAMES);
+wallpaper.cloth = hidden.text;
+wallpaper.hiddenCells = hidden.cells;
+wallpaper.hiddenScale = HIDDEN_NAME_SCALE;
 
-/** Overwrite cloth cells so each word lands on one row or one column. */
+/** Overwrite cloth cells so each word lands on one row or one column; returns the touched cells. */
 function hideWords(text, gridW, words) {
   const chars = Array.from(text);
+  const cells = new Set();
   for (const { text: word, row, col, dir } of words) {
     Array.from(word).forEach((ch, k) => {
       const i = dir === "h" ? col + k : col;
       const j = dir === "h" ? row : row + k;
       chars[j * gridW + i] = ch;
+      cells.add(j * gridW + i);
     });
   }
-  return chars.join("");
+  return { text: chars.join(""), cells };
 }
 
 /** Left → right order for side navigation */

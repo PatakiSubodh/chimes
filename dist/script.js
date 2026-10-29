@@ -636,7 +636,10 @@ function main() {
       const id = getPointID(j, i, gridH);
       const pinned = j === 0;
       const char = charForCell(fullCode, i, j, gridW, gridH, writing);
-      particles.push(new Particle({ x, y, pinned, id, char }));
+      const scale = country.hiddenCells?.has(j * gridW + i)
+        ? country.hiddenScale
+        : 1;
+      particles.push(new Particle({ x, y, pinned, id, char, scale }));
     }
   }
 
@@ -693,7 +696,7 @@ function main() {
         sin = Math.sin(angle);
       }
 
-      const size = img._size;
+      const size = img._size * p.scale;
       const half = size / 2;
       const x = p.pos.x + originX;
       const y = p.pos.y + originY;
@@ -897,7 +900,7 @@ class Vec2 {
 }
 
 class Particle {
-  constructor({ x, y, pinned, id, char } = {}) {
+  constructor({ x, y, pinned, id, char, scale = 1 } = {}) {
     this.pos = new Vec2(x, y);
     this.oldPos = new Vec2(x, y);
     this.velocity = new Vec2();
@@ -905,6 +908,7 @@ class Particle {
     this.pinned = pinned;
     this.id = id;
     this.char = char;
+    this.scale = scale;
     this.gravityVec = new Vec2();
   }
   contain() {
