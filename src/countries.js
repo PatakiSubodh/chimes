@@ -528,7 +528,7 @@ export const COUNTRY_ORDER = [
   "iran"
 ];
 
-export const DEFAULT_COUNTRY = "china";
+export const DEFAULT_COUNTRY = "china-france";
 
 export function neighborsOf(id) {
   const i = COUNTRY_ORDER.indexOf(id);
