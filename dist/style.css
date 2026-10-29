@@ -316,7 +316,8 @@ body {
   --roof-h: 634px;
 }
 
-.area[data-country="vietnam"] {
+.area[data-country="vietnam"],
+.area[data-country="vietnam-france"] {
   --roof-x: -92px;
   --roof-y: -399px;
   --roof-w: 676px;
@@ -1628,7 +1629,8 @@ body {
     --roof-h: calc(634 / 492 * var(--area-w));
   }
 
-  .area[data-country="vietnam"] {
+  .area[data-country="vietnam"],
+  .area[data-country="vietnam-france"] {
     --roof-x: calc(-92 / 492 * var(--area-w));
     --roof-y: calc(-399 / 492 * var(--area-w));
     --roof-w: calc(676 / 492 * var(--area-w));
