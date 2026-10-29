@@ -2,7 +2,7 @@ import { getPointID, smoothstep } from "./utils.js";
 import { COUNTRIES, DEFAULT_COUNTRY, charForCell } from "./countries.js";
 import { chimes } from "./chimes.js";
 
-// Figma area 605:6463
+// Gate area in px at the 1440×900 design size
 const AREA_W = 492;
 const AREA_H = 468;
 const STRINGS_PAD = 420;

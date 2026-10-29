@@ -1,12 +1,8 @@
-# Chimes — Budarina
+# your smile is the chime for me
 
-Interactive portfolio experience by [Marina Budarina](https://budarina.design): country roofs, letter-cloth physics, destinations carousel, and chimes.
+A living Mac wallpaper: a gate hung with French travel sayings that sway and chime as the cursor passes through them, with a few names hidden in the cloth.
 
-**Marina Budarina**
-- Site: [budarina.design](https://budarina.design)
-- Instagram: [instagram.com/marina_uiux](https://www.instagram.com/marina_uiux/)
-- X: [x.com/marina_uiux](https://x.com/marina_uiux)
-- LinkedIn: [linkedin.com/in/marina-budarina](https://www.linkedin.com/in/marina-budarina/)
+Built to run as a website wallpaper with [Plash](https://sindresorhus.com/plash) on macOS.
 
 ## Run locally
 
@@ -18,5 +14,4 @@ Open [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
 
 ## Credits
 
-- **Design & product** — Marina Budarina (UI, countries, transitions, chimes, destinations, assets). All rights reserved; see [LICENSE.txt](./LICENSE.txt).
-- **Cloth physics foundation** — Verlet string simulation adapted from [Liam Egan on CodePen](https://codepen.io/shubniggurath/pen/ZYpjorm) (MIT).
+Based on an original project by Marina Budarina; see [LICENSE.txt](./LICENSE.txt). The cloth physics are adapted from [Liam Egan on CodePen](https://codepen.io/shubniggurath/pen/ZYpjorm) (MIT).
