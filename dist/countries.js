@@ -14,8 +14,8 @@ const HIDDEN_NAMES = [
   { text: "Made with love", row: 34, col: 14, dir: "h" }
 ];
 
-/** Name letters draw 10% larger than the surrounding cloth text (same font). */
-const HIDDEN_NAME_SCALE = 1.1;
+/** Name letters draw at the same size as the cloth text so they blend in. */
+const HIDDEN_NAME_SCALE = 1;
 
 /** macOS system font (San Francisco) — this wallpaper only runs on a Mac. */
 const SYSTEM_FONT = '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif';
