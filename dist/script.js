@@ -1884,10 +1884,6 @@ function initCarousel() {
 fitGateToBackground();
 window.addEventListener("resize", fitGateToBackground);
 main();
-// Glyphs are baked into canvases — redraw once the cloth's web font is ready.
-if (document.fonts && !document.fonts.check('14px "JetBrains Mono"')) {
-  document.fonts.load('14px "JetBrains Mono"').then(() => rerender());
-}
 applyClothSettings(getCountry());
 applyCountryCopy(getCountry());
 chimes.setCountry(getCountry().id);

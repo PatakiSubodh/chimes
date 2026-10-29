@@ -4,11 +4,11 @@
  */
 /** Names hidden in the cloth — read left→right ("h") or top→bottom ("v"). */
 const HIDDEN_NAMES = [
-  { text: "Sakshi Rotake", row: 3, col: 4, dir: "h" },
-  { text: "Radhika Gopal", row: 9, col: 14, dir: "h" },
-  { text: "Bharati", row: 19, col: 18, dir: "h" },
-  { text: "Kiran Rotake", row: 5, col: 38, dir: "v" },
-  { text: "Saurabh Rotake", row: 11, col: 2, dir: "v" }
+  { text: "sakshi rotake", row: 3, col: 4, dir: "h" },
+  { text: "radhika gopal", row: 9, col: 14, dir: "h" },
+  { text: "bharati", row: 19, col: 18, dir: "h" },
+  { text: "kiran rotake", row: 5, col: 38, dir: "v" },
+  { text: "saurabh rotake", row: 11, col: 2, dir: "v" }
 ];
 
 /** Name letters draw 10% larger than the surrounding cloth text (same font). */
@@ -51,7 +51,7 @@ export const COUNTRIES = {
     buttonIcon: "./selector-vietnam.png",
     writing: "horizontal",
     gridW: 42,
-    font: '"JetBrains Mono", "PT Serif", "Georgia", "Times New Roman", serif',
+    font: '"PT Serif", serif',
     cloth: [
       "Le voyage forme la jeunesse — mais c'est le retour qui révèle ce que le chemin a vraiment changé",
       "Partir c'est mourir un peu — et renaître un peu aussi dès que l'inconnu cesse d'être étranger",
