@@ -4,15 +4,15 @@
  */
 /** Names hidden in the cloth — read left→right ("h") or top→bottom ("v"). */
 const HIDDEN_NAMES = [
-  { text: "SAKSHI ROTAKE", row: 3, col: 4, dir: "h" },
-  { text: "RADHIKA GOPAL", row: 9, col: 14, dir: "h" },
-  { text: "BHARATI", row: 19, col: 18, dir: "h" },
-  { text: "KIRAN ROTAKE", row: 5, col: 38, dir: "v" },
-  { text: "SAURABH ROTAKE", row: 11, col: 2, dir: "v" }
+  { text: "Sakshi Rotake", row: 3, col: 4, dir: "h" },
+  { text: "Radhika Gopal", row: 9, col: 14, dir: "h" },
+  { text: "Bharati", row: 19, col: 18, dir: "h" },
+  { text: "Kiran Rotake", row: 5, col: 38, dir: "v" },
+  { text: "Saurabh Rotake", row: 11, col: 2, dir: "v" }
 ];
 
-/** Name letters draw a touch larger than lowercase text, smaller than full capitals. */
-const HIDDEN_NAME_SCALE = 0.85;
+/** Name letters draw a touch larger than the surrounding cloth text. */
+const HIDDEN_NAME_SCALE = 1.15;
 
 export const COUNTRIES = {
   vietnam: {

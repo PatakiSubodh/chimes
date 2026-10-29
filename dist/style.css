@@ -3,6 +3,8 @@
 :root {
   --area-w: 492px;
   --area-h: 468px;
+  /* Wallpaper — shrink gate to sit inside the background's opening */
+  --gate-scale: 0.8;
   /* Default China roof from Figma 605:6500 crop → full PNG placement */
   --roof-x: -180px;
   --roof-y: -508px;
@@ -296,7 +298,8 @@ body {
   top: calc(357 / 900 * 100%);
   width: var(--area-w);
   height: var(--area-h);
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(var(--gate-scale));
+  transform-origin: 50% 0;
   z-index: 1;
   overflow: visible;
 }
@@ -319,7 +322,7 @@ body {
 .area[data-country="vietnam"],
 .area[data-country="vietnam-france"] {
   --roof-x: -92px;
-  --roof-y: -399px;
+  --roof-y: -407px;
   --roof-w: 676px;
   --roof-h: 676px;
 }
