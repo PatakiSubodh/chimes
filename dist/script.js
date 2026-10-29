@@ -481,7 +481,10 @@ fitGateToBackground();
 window.addEventListener("resize", fitGateToBackground);
 chimes.setCountry(country.id);
 
-// Audio only starts after a gesture — first click or key anywhere unlocks hover chimes.
+// Start audio on load: embedded web views (e.g. Plash) can allow it with no gesture,
+// so hovering chimes straight away. Regular browsers keep it suspended until a
+// click or key press, which the listeners below pick up as a fallback.
+chimes.ensure();
 const unlockEvents = ["pointerdown", "keydown", "touchend"];
 function unlockChimes() {
   chimes.unlock().then((running) => {
