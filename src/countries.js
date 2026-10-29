@@ -2,6 +2,15 @@
  * Country destinations — each roof / cloth / writing / page copy.
  * Side buttons cycle neighbors along COUNTRY_ORDER.
  */
+/** Names hidden in the cloth — read left→right ("h") or top→bottom ("v"). */
+const HIDDEN_NAMES = [
+  { text: "SAKSHI ROTAKE", row: 3, col: 4, dir: "h" },
+  { text: "RADHIKA GOPAL", row: 9, col: 14, dir: "h" },
+  { text: "BHARATI", row: 19, col: 18, dir: "h" },
+  { text: "KIRAN ROTAKE", row: 5, col: 38, dir: "v" },
+  { text: "SAURABH ROTAKE", row: 11, col: 2, dir: "v" }
+];
+
 export const COUNTRIES = {
   vietnam: {
     id: "vietnam",
@@ -506,6 +515,22 @@ export const COUNTRIES = {
     ].join("　")
   }
 };
+
+const wallpaper = COUNTRIES["china-france"];
+wallpaper.cloth = hideWords(wallpaper.cloth, wallpaper.gridW, HIDDEN_NAMES);
+
+/** Overwrite cloth cells so each word lands on one row or one column. */
+function hideWords(text, gridW, words) {
+  const chars = Array.from(text);
+  for (const { text: word, row, col, dir } of words) {
+    Array.from(word).forEach((ch, k) => {
+      const i = dir === "h" ? col + k : col;
+      const j = dir === "h" ? row : row + k;
+      chars[j * gridW + i] = ch;
+    });
+  }
+  return chars.join("");
+}
 
 /** Left → right order for side navigation */
 export const COUNTRY_ORDER = [
