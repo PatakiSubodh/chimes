@@ -480,4 +480,14 @@ function fitGateToBackground() {
 fitGateToBackground();
 window.addEventListener("resize", fitGateToBackground);
 chimes.setCountry(country.id);
+
+// Audio only starts after a gesture — first click or key anywhere unlocks hover chimes.
+const unlockEvents = ["pointerdown", "keydown", "touchend"];
+function unlockChimes() {
+  chimes.unlock().then((running) => {
+    if (running) unlockEvents.forEach((ev) => window.removeEventListener(ev, unlockChimes));
+  });
+}
+unlockEvents.forEach((ev) => window.addEventListener(ev, unlockChimes));
+
 main();
