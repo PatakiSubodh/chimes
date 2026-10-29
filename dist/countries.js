@@ -3,15 +3,15 @@
  */
 /** Names hidden in the cloth — read left→right ("h") or top→bottom ("v"). */
 const HIDDEN_NAMES = [
-  { text: "sakshi rotake", row: 3, col: 4, dir: "h" },
-  { text: "radhika gopal", row: 9, col: 14, dir: "h" },
-  { text: "bharati", row: 19, col: 18, dir: "h" },
-  { text: "kiran rotake", row: 5, col: 38, dir: "v" },
-  { text: "saurabh rotake", row: 11, col: 2, dir: "v" },
-  { text: "sanni", row: 14, col: 10, dir: "h" },
-  { text: "surajmukhi", row: 24, col: 20, dir: "h" },
-  { text: "sakshuiya", row: 12, col: 30, dir: "v" },
-  { text: "made with love", row: 34, col: 14, dir: "h" }
+  { text: "Sakshi Rotake", row: 3, col: 4, dir: "h" },
+  { text: "Radhika Gopal", row: 9, col: 14, dir: "h" },
+  { text: "Bharati", row: 19, col: 18, dir: "h" },
+  { text: "Kiran Rotake", row: 5, col: 38, dir: "v" },
+  { text: "Saurabh Rotake", row: 11, col: 2, dir: "v" },
+  { text: "Sanni", row: 14, col: 10, dir: "h" },
+  { text: "Surajmukhi", row: 24, col: 20, dir: "h" },
+  { text: "Sakshuiya", row: 12, col: 30, dir: "v" },
+  { text: "Made with love", row: 34, col: 14, dir: "h" }
 ];
 
 /** Name letters draw 10% larger than the surrounding cloth text (same font). */
