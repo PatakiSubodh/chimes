@@ -11,7 +11,7 @@
   --roof-w: 676px;
   --roof-h: 676px;
   --roof-zoom: 1.18;
-  /* Figma shadow 605:6464 — x:0 y:0 w:996 h:468 (no blur pad) */
+  /* Roof shadow cast across the cloth */
   --shadow-w: 996px;
   --shadow-h: 468px;
 }
@@ -42,7 +42,7 @@ body {
   overflow: hidden;
 }
 
-/* Strings area — Figma 605:6463 (w:492 h:468), raised to fit the scaled gate */
+/* Strings area (492×468 at 1440×900), raised to fit the scaled gate */
 .area {
   position: absolute;
   left: 50%;
@@ -61,7 +61,7 @@ body {
 }
 
 .shadow {
-  /* Figma progressive cast under roof — stacked blur layers approximate soft falloff */
+  /* Progressive cast under roof — stacked blur layers approximate soft falloff */
   position: absolute;
   left: 0;
   top: 0;
@@ -74,7 +74,7 @@ body {
 }
 
 /* Progressive blur: sharp under the roof → softer toward the far end.
-   Native CSS can't do Figma progressive blur in one filter, so we stack
+   Native CSS can't do a progressive blur in one filter, so we stack
    increasingly blurred copies masked along the cast direction. */
 .shadow__layer {
   position: absolute;
