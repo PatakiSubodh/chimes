@@ -597,16 +597,16 @@ function main() {
   const fullCode = country.cloth;
   const writing = country.writing || "horizontal";
   const charCanvases = {};
-  for (const ch of new Set(fullCode)) {
-    if (ch === " " || ch === "　") continue;
-    const size = Math.ceil(fontSize * 1.35);
+  const nameCanvases = {};
+  const drawGlyph = (ch, px) => {
+    const size = Math.ceil(px * 1.35);
     const off = document.createElement("canvas");
     off.width = Math.ceil(size * dpr);
     off.height = Math.ceil(size * dpr);
     off._size = size;
     const octx = off.getContext("2d");
     octx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    octx.font = `${fontSize}px ${
+    octx.font = `${px}px ${
       country.font ||
       '"Songti SC", "STSong", "Noto Serif SC", "Hiragino Mincho ProN", serif'
     }`;
@@ -614,7 +614,18 @@ function main() {
     octx.textBaseline = "middle";
     octx.fillStyle = "#2a2620";
     octx.fillText(ch, size / 2, size / 2);
-    charCanvases[ch] = off;
+    return off;
+  };
+  for (const ch of new Set(fullCode)) {
+    if (ch === " " || ch === "　") continue;
+    charCanvases[ch] = drawGlyph(ch, fontSize);
+  }
+  // Hidden names: same family, drawn at a slightly larger size
+  for (const cell of country.hiddenCells ?? []) {
+    const ch = fullCode[cell];
+    if (ch && ch !== " " && !nameCanvases[ch]) {
+      nameCanvases[ch] = drawGlyph(ch, fontSize * country.hiddenScale);
+    }
   }
 
   c = document.createElement("canvas");
@@ -636,10 +647,8 @@ function main() {
       const id = getPointID(j, i, gridH);
       const pinned = j === 0;
       const char = charForCell(fullCode, i, j, gridW, gridH, writing);
-      const scale = country.hiddenCells?.has(j * gridW + i)
-        ? country.hiddenScale
-        : 1;
-      particles.push(new Particle({ x, y, pinned, id, char, scale }));
+      const isName = country.hiddenCells?.has(j * gridW + i) ?? false;
+      particles.push(new Particle({ x, y, pinned, id, char, isName }));
     }
   }
 
@@ -682,7 +691,7 @@ function main() {
   function drawCode() {
     particles.forEach((p) => {
       if (!p.char || p.char === " " || p.char === "　") return;
-      const img = charCanvases[p.char];
+      const img = (p.isName ? nameCanvases : charCanvases)[p.char];
       if (!img) return;
 
       let cos = 1;
@@ -696,7 +705,7 @@ function main() {
         sin = Math.sin(angle);
       }
 
-      const size = img._size * p.scale;
+      const size = img._size;
       const half = size / 2;
       const x = p.pos.x + originX;
       const y = p.pos.y + originY;
@@ -900,7 +909,7 @@ class Vec2 {
 }
 
 class Particle {
-  constructor({ x, y, pinned, id, char, scale = 1 } = {}) {
+  constructor({ x, y, pinned, id, char, isName = false } = {}) {
     this.pos = new Vec2(x, y);
     this.oldPos = new Vec2(x, y);
     this.velocity = new Vec2();
@@ -908,7 +917,7 @@ class Particle {
     this.pinned = pinned;
     this.id = id;
     this.char = char;
-    this.scale = scale;
+    this.isName = isName;
     this.gravityVec = new Vec2();
   }
   contain() {
@@ -1073,6 +1082,16 @@ function initViews() {
   );
   setView(initial);
   window.setView = setView;
+}
+
+/** Wallpaper: scale the gate with the cover-fit background (bg.png) so it stays in the image's opening. */
+const BG_W = 1672;
+const BG_H = 940;
+
+function fitGateToBackground() {
+  const cover = (w, h) => Math.max(w / BG_W, h / BG_H);
+  const fit = cover(innerWidth, innerHeight) / cover(1440, 900);
+  document.documentElement.style.setProperty("--gate-fit", fit.toFixed(4));
 }
 
 /** Mobile: pin home area a fixed gap above the bottom-copy row (tabs). */
@@ -1862,7 +1881,13 @@ function initCarousel() {
   };
 }
 
+fitGateToBackground();
+window.addEventListener("resize", fitGateToBackground);
 main();
+// Glyphs are baked into canvases — redraw once the cloth's web font is ready.
+if (document.fonts && !document.fonts.check('14px "JetBrains Mono"')) {
+  document.fonts.load('14px "JetBrains Mono"').then(() => rerender());
+}
 applyClothSettings(getCountry());
 applyCountryCopy(getCountry());
 chimes.setCountry(getCountry().id);

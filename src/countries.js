@@ -11,8 +11,8 @@ const HIDDEN_NAMES = [
   { text: "Saurabh Rotake", row: 11, col: 2, dir: "v" }
 ];
 
-/** Name letters draw a touch larger than the surrounding cloth text. */
-const HIDDEN_NAME_SCALE = 1.15;
+/** Name letters draw 10% larger than the surrounding cloth text (same font). */
+const HIDDEN_NAME_SCALE = 1.1;
 
 export const COUNTRIES = {
   vietnam: {
