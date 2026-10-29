@@ -343,7 +343,12 @@ export class StringChimes {
     }
   }
 
-  async ensure() {
+  /**
+   * Browsers keep audio suspended until a click / key press. Hover strikes
+   * must not wait on resume() (it stays pending until a gesture), so only
+   * `wait` callers — ones running inside a gesture — await it.
+   */
+  async ensure({ wait = false } = {}) {
     if (!this.ctx) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return false;
@@ -360,13 +365,15 @@ export class StringChimes {
       this.shelf.connect(this.ctx.destination);
     }
     if (this.ctx.state === "suspended") {
-      try {
-        await this.ctx.resume();
-      } catch (_) {
-        return false;
-      }
+      const resumed = this.ctx.resume().catch(() => {});
+      if (wait) await resumed;
     }
-    return true;
+    return this.ctx.state === "running";
+  }
+
+  /** Call from a user gesture so later hover strikes can sound. */
+  unlock() {
+    return this.ensure({ wait: true });
   }
 
   setVolume(v) {
@@ -379,7 +386,7 @@ export class StringChimes {
    */
   async strike(opts = {}) {
     if (!this.enabled) return;
-    const ok = await this.ensure();
+    const ok = await this.ensure({ wait: !!opts.force });
     if (!ok || !this.ctx) return;
 
     const profile = this.profile;
