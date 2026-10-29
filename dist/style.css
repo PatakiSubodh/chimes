@@ -4,7 +4,7 @@
   --area-w: 492px;
   --area-h: 468px;
   /* Wallpaper — shrink gate to sit inside the background's opening */
-  --gate-scale: 0.92;
+  --gate-scale: 0.9;
   /* Default China roof from Figma 605:6500 crop → full PNG placement */
   --roof-x: -180px;
   --roof-y: -508px;
